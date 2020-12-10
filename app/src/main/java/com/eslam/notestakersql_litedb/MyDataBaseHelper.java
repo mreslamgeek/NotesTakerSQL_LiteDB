@@ -2,6 +2,7 @@ package com.eslam.notestakersql_litedb;
 
 import android.content.ContentValues;
 import android.content.Context;
+import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 import android.widget.Toast;
@@ -48,11 +49,21 @@ class MyDataBaseHelper extends SQLiteOpenHelper {
         cv.put(COLUMN_DESCRIPTION, description);
 
         Long result = db.insert(TABLE_NAME, null, cv);
-        if (result==-1){
+        if (result == -1) {
             Toast.makeText(context, "Failed", Toast.LENGTH_SHORT).show();
-        }else
-        {
+        } else {
             Toast.makeText(context, "Added Successfully!!", Toast.LENGTH_SHORT).show();
         }
+    }
+
+    Cursor readAllData() {
+        String query = "SELECT * FROM " + TABLE_NAME;
+        SQLiteDatabase db = this.getReadableDatabase();
+        Cursor cursor = null;
+
+        if (db != null) {
+            cursor = db.rawQuery(query, null);
+        }
+        return cursor;
     }
 }
