@@ -2,6 +2,7 @@ package com.eslam.notestakersql_litedb;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +27,13 @@ public class AddActivity extends AppCompatActivity {
             public void onClick(View view) {
                 MyDataBaseHelper myDB = new MyDataBaseHelper(AddActivity.this);
                 myDB.addNote(et_title.getText().toString().trim() , et_description.getText().toString().trim());
+                Intent intent = new Intent(AddActivity.this , MainActivity.class);
+                startActivity(intent);
+                finish();
+
+
+
+
             }
         });
 
